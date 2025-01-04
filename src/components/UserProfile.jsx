@@ -1,7 +1,7 @@
 import { useEffect,useState } from "react";
 
 function UserProfile({userId}){
-    const [user,setUser] = useState({name:"",email:""});
+    const [user,setUser] = useState(null);
 
     useEffect(
         ()=>{
@@ -10,7 +10,9 @@ function UserProfile({userId}){
       .then(data => setUser(data))
         },[userId]
     );
-
+    if(!user){
+        return <p>Loading...</p>
+   }
     return(
         <div>
             <h2>{user.name}</h2>
